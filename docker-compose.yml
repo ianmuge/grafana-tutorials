@@ -39,6 +39,14 @@ services:
     image: grafana/grafana:7.0.4
     ports:
       - 3000:3000
+    environment:
+      - GF_DEFAULT_APP_MODE=development
+      - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=muge-tutorial-backend-datasource
+      - GF_PLUGINS_ENABLE_ALPHA=true
+    volumes:
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+      - ./grafana/plugins:/var/lib/grafana/plugins
+      - ./grafana/provisioning:/etc/grafana/provisioning
     networks:
       - grafana
 
